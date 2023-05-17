@@ -14,8 +14,9 @@ const typeDefs = importSchema ('./src/schema.graphql');
 const resolvers = {
     Query: {
             allbooks:() => books,
-            getauthor:() => authors
-//getauthor: {author(parent) {return [parent.author]}}
+            allauthors: () => authors,
+            getAuthorByBook: {book:() => { return parent.name}}
+            //getAuthorByBook: {author(parent) {return [parent.author]}}
            }
 
   };
