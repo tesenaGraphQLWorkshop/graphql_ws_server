@@ -27,14 +27,14 @@ type Book {
             getAuthorByBook: Author
             }
 
-  input AddBookInput
-            {
-              title: String!
-              author: Author!
-              year: Int
-              binding: String
-            }
-  type mutation
-            {
-              addBook (Input: AddBookInput): book
-            }
+#  input AddBookInput
+#            {
+#              title: String!
+#              author: Author!
+#              year: Int
+#              binding: String
+#            }
+#  type mutation
+#            {
+#              addBook (Input: AddBookInput): Book
+#            }

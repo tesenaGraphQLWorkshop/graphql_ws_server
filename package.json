@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "graphql-import": "^1.0.2"
+    "@apollo/server": "^4.7.1",
+    "graphql": "^15.8.0",
+    "graphql-import": "^1.0.2",
+    "npm": "^9.6.7"
   }
 }
