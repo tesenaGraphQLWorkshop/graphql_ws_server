@@ -1,12 +1,21 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { books } from './src/data.js';
-import { importSchema } from 'graphql-import';
+//import { importSchema } from 'graphql-import';
+import { loadSchemaSync } from '@graphql-tools/load'
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
+import { addResolversToSchema } from '@graphql-tools/schema'
+
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
-const typeDefs = importSchema ('./src/schema.graphql');
+
+// const typeDefs = importSchema ('./src/schema.graphql');
+
+const typeDefs = loadSchemaSync ('./src/schema.graphql', { loaders: [new GraphQLFileLoader()] })
+
+//const schemaWithResolvers = addResolversToSchema({ typeDefs, resolvers })
 
 
 // Resolvers define how to fetch the types defined in your schema.
@@ -20,6 +29,7 @@ const resolvers = {
            }
 
   };
+
 
   // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
