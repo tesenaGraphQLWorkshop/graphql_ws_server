@@ -15,7 +15,7 @@ const resolvers = {
     Query: {
             allbooks:() => books,
             allauthors: () => authors,
-            getAuthorByBook: {book:() => { return parent.name}}
+            //getAuthorByBook: {book:() => { return parent.name}}
             //getAuthorByBook: {author(parent) {return [parent.author]}}
            }
 
