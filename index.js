@@ -7,29 +7,44 @@ import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import { addResolversToSchema } from '@graphql-tools/schema'
 
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
-
 // const typeDefs = importSchema ('./src/schema.graphql');
+//const schemaWithResolvers = addResolversToSchema({ typeDefs, resolvers })
 
 const typeDefs = loadSchemaSync ('./src/schema.graphql', { loaders: [new GraphQLFileLoader()] })
 
-//const schemaWithResolvers = addResolversToSchema({ typeDefs, resolvers })
+// Resolvers define how to fetch the types defined in your schema (obj, args, context, info) => {}
 
-
-// Resolvers define how to fetch the types defined in your schema.
-// This resolver retrieves books from the "books" array above.
 const resolvers = {
-    Query: {
+  
+  BookBinding_enum: {
+            PAPERBACK: 'PAPERBACK',
+            HARDCOVER: 'HARDCOVER'
+           },
+  
+// greeting is a simple string
+// Resolver function 'allbooks' returns all books
+// allauthors: books.map(book => book.author.name = maps over the books array and extracts the name property of the author object for each book. Creates an array of author names.
+// getauthorbyBook: takes title of the book as an argument (from a select list maybe) and returns an author
+// bookfromtitle: takes title, returns author
+
+  Query: {
+            greeting: () => 'Greetings fellow learner',
             allbooks:() => books,
-            allauthors: () => authors,
-            //getAuthorByBook: {book:() => { return parent.name}}
-            //getAuthorByBook: {author(parent) {return [parent.author]}}
+            allauthors: () =>
+                        {
+                         const uniqueAuthors = [...new Set(books.map(book => book.author.name))];
+                         return uniqueAuthors.map(authorName => ({ name: authorName }));
+                        },
+                          
+            getAuthorByBook: {
+                            author: (parent) => parent.author,
+                             },
+            bookfromtitle: {
+                            book: (parent) => parent.title,
+                           }
            }
 
   };
-
 
   // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.

@@ -6,7 +6,7 @@ export const books =
             },
     title: 'Harry Potter and the Philosophers Stone',
     year: 1997,
-    binding: 'hardcover'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -14,7 +14,7 @@ export const books =
             },
     title: 'Harry Potter and the Chamber of Secrets',
     year: 1998,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -22,7 +22,7 @@ export const books =
             },
     title: '1984',
     year: 1949,
-    binding: 'paperback',
+    binding: 'PAPERBACK',
     },
     {
     author: {
@@ -30,7 +30,7 @@ export const books =
             },
     title: 'To Kill a Mockingbird',
     year: 1960,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -38,7 +38,7 @@ export const books =
             },
     title: 'The Book Thief',
     year: 2005,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -46,7 +46,7 @@ export const books =
             },
     title: 'The Great Gatsby',
     year: 1925,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -54,7 +54,7 @@ export const books =
             },
     title: 'The Old Man and the Sea',
     year: 1952,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -62,7 +62,7 @@ export const books =
             },
     title: 'Sense and Sensibility',
     year: 1811,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -70,7 +70,7 @@ export const books =
             },
     title: 'The Hobbit',
     year: 1937,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -78,7 +78,7 @@ export const books =
             },
     title: 'Murder on the Orient Express',
     year: 1934,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -86,7 +86,7 @@ export const books =
             },
     title: 'The Da Vinci Code',
     year: 2003,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -94,7 +94,7 @@ export const books =
             },
     title: 'One Hundred Years of Solitude',
     year: 1967,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -102,7 +102,7 @@ export const books =
             },
     title: 'Wuthering Heights',
     year: 1847,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author:{
@@ -110,7 +110,7 @@ export const books =
            },
     title: 'Crime and Punishment',
     year: 1866,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -118,7 +118,7 @@ export const books =
             },
     title: 'Siddhartha',
     year: 1922,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -126,7 +126,7 @@ export const books =
             },
     title: 'Norwegian Wood',
     year: 1987,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -134,7 +134,7 @@ export const books =
             },
     title: 'To the Lighthouse',
     year: 1927,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -142,7 +142,7 @@ export const books =
             },
     title: 'War and Peace',
     year: 1869,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -150,7 +150,7 @@ export const books =
             },
     title: 'Never Let Me Go',
     year: 2005,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     },
     {
     author: {
@@ -158,7 +158,7 @@ export const books =
             },
     title: 'The Stranger',
     year: 1942,
-    binding: 'hardcover'
+    binding: 'HARDCOVER'
     },
     {
     author: {
@@ -166,7 +166,7 @@ export const books =
             },
     title: 'Gone Girl',
     year: 2012,
-    binding: 'paperback'
+    binding: 'PAPERBACK'
     }
 ];
 
