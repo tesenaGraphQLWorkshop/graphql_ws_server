@@ -4,6 +4,7 @@ import { books } from './src/data.js';
 import { loadSchemaSync } from '@graphql-tools/load'
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import { addResolversToSchema } from '@graphql-tools/schema'
+import { Mutation } from 'type-graphql';
 
 // const schemaWithResolvers = addResolversToSchema({ typeDefs, resolvers })
 
@@ -23,13 +24,12 @@ const resolvers =
 
   Query: {
             greeting: () => 'Greetings fellow learner',
-            allbooks:() => books, 
-            allauthors: () =>
+            allBooks:() => books,
+            allAuthors: () =>
                         {
                          const uniqueAuthors = [...new Set(books.map(book => book.author.name))];
                          return uniqueAuthors.map(authorName => ({ name: authorName }));
                         },
-                          
             GetAuthorByBook: {
                             author: (parent) => parent.author,
                              },
@@ -38,11 +38,24 @@ const resolvers =
                                      },
             GetBooksByAuthor: {
                                 book: (parent) => author.book,
-                              }
+                              },
+          },
 
-          }
+/*   Mutation: {
+            addBook: async (_, { AddBookInput }) => {
+              const book = new book({ AddBookInput });
+              await book.save();
+              return book;
+            },
+            
+            addAuthor: async (_, { name }) => {
+              const author = new author({ name });
+              await author.save();
+              return author;
+              }
+            } */
+
 }
-
   // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
 const server = new ApolloServer (

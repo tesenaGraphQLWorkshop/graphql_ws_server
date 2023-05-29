@@ -36,18 +36,17 @@ type Book {
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
 
-
   # author ma vracet autora dle knihy ale? authors(title)??
 
 
   type Query
             {
             greeting: String
-            allbooks: [Book]
-            allauthors: [Author]
-            GetAuthorByBook: Author
+            allBooks: [Book]
+            allAuthors: [Author]
+            GetAuthorByBook(title:String): Author
             GetBookDetailsFromTitle(title:String): Book
-            GetBooksByAuthor(author.name:String): Book
+            GetBooksByAuthor(name:String): Book
             }
 
 #  input AddBookInput
@@ -56,9 +55,10 @@ type Book {
 #              author: Author!
 #              year: Int
 #              binding: BookBinding_enum
-               bookStatus: BookStatus_enum
+#              bookStatus: BookStatus_enum
 #            }
 #  type mutation
 #            {
-#              addBook (Input: AddBookInput): Book
+#              addBook (Input: AddBookInput): Book!
+#              addAuthor (name: String!): Author!
 #            }

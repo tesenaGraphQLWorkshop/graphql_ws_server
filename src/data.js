@@ -212,6 +212,3 @@ export const books =
     bookStatus:'UNAVAILABLE'
     }
 ]    
-
-
-//const authors = [{}]
