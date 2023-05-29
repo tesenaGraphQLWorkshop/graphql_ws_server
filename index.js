@@ -20,6 +20,12 @@ const resolvers = {
             PAPERBACK: 'PAPERBACK',
             HARDCOVER: 'HARDCOVER'
            },
+
+  // BookStatus_enum {
+  //          AVAILABLE:'AVAILABLE',
+  //          UNAVAILABLE:'UNAVAILABLE'
+ //},
+   
   
 // greeting is a simple string
 // Resolver function 'allbooks' returns all books
@@ -41,7 +47,10 @@ const resolvers = {
                              },
             bookfromtitle: {
                             book: (parent) => parent.title,
-                           }
+                           },
+                           GetBooksByAuthors: (parent, args) => {
+                            return books.filter(({ author }) => author.name === args.name);
+                          },              
            }
 
   };

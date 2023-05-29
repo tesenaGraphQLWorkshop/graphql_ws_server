@@ -47,7 +47,7 @@ type Book {
             allauthors: [Author]
             getAuthorByBook: Author
             bookfromtitle(title:String): Book
-            GetBooksByAuthors(name: String): Author 
+            GetBooksByAuthors(name: String): [Book]
             }
 
 #  input AddBookInput
