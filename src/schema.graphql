@@ -11,13 +11,20 @@ enum BookBinding_enum {
               HARDCOVER
                  }
 
+enum BookStatus_enum {
+              AVAILABLE
+              UNAVAILABLE
+}                 
+
 # This "Book" type defines the queryable fields for every book in our data source.
 
 type Book {
+    id: Int!
     title: String!
     author: Author!
     year: Int
     binding: BookBinding_enum
+    bookStatus: BookStatus_enum!
           }
 
   type Author {
@@ -40,6 +47,7 @@ type Book {
             allauthors: [Author]
             getAuthorByBook: Author
             bookfromtitle(title:String): Book
+            GetBooksByAuthors(name: String): Author 
             }
 
 #  input AddBookInput
