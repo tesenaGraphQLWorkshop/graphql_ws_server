@@ -13,15 +13,9 @@ const typeDefs = loadSchemaSync ('./src/schema.graphql', { loaders: [new GraphQL
 // Resolvers define how to fetch the types defined in your schema (obj, args, context, info) => {}
 
 const resolvers = {
-  
-/*   BookBinding_enum: {
-            PAPERBACK: 'PAPERBACK',
-            HARDCOVER: 'HARDCOVER'
-           },
-  BookStatus_enum: {
-                      AVAILABLE:'AVAILABLE',
-                     UNAVAILABLE:'UNAVAILABLE'
-           }, */
+
+//enum typedefs moved to schema.graphql
+ 
   
 // greeting is a simple string
 // Resolver function 'allbooks' returns all books
@@ -43,11 +37,12 @@ const resolvers = {
             GetBookDetailsFromTitle: {
                             book: (parent) => parent.title,
                            },
-          GetBooksByAuthor: (parent, args) => {
+            GetBooksByAuthor: (parent, args) => {
                             return books.filter(({ author }) => author.name === args.name);
                           },
-                        },                            
-                          /*   Mutation: {
+          }, 
+                                     
+       /*   Mutation: {
             addBook: async (_, { AddBookInput }) => {
               const book = new book({ AddBookInput });
               await book.save();
