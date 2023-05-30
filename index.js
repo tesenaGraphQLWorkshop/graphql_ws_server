@@ -1,14 +1,12 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { books } from './src/data.js';
-//import { importSchema } from 'graphql-import';
 import { loadSchemaSync } from '@graphql-tools/load'
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import { addResolversToSchema } from '@graphql-tools/schema'
+import { Mutation } from 'type-graphql';
 
-
-// const typeDefs = importSchema ('./src/schema.graphql');
-//const schemaWithResolvers = addResolversToSchema({ typeDefs, resolvers })
+// const schemaWithResolvers = addResolversToSchema({ typeDefs, resolvers })
 
 const typeDefs = loadSchemaSync ('./src/schema.graphql', { loaders: [new GraphQLFileLoader()] })
 
@@ -16,16 +14,14 @@ const typeDefs = loadSchemaSync ('./src/schema.graphql', { loaders: [new GraphQL
 
 const resolvers = {
   
-  BookBinding_enum: {
+/*   BookBinding_enum: {
             PAPERBACK: 'PAPERBACK',
             HARDCOVER: 'HARDCOVER'
            },
-
-  // BookStatus_enum {
-  //          AVAILABLE:'AVAILABLE',
-  //          UNAVAILABLE:'UNAVAILABLE'
- //},
-   
+  BookStatus_enum: {
+                      AVAILABLE:'AVAILABLE',
+                     UNAVAILABLE:'UNAVAILABLE'
+           }, */
   
 // greeting is a simple string
 // Resolver function 'allbooks' returns all books
@@ -35,23 +31,35 @@ const resolvers = {
 
   Query: {
             greeting: () => 'Greetings fellow learner',
-            allbooks:() => books,
-            allauthors: () =>
+            AllBooks:() => books,
+            AllAuthors: () =>
                         {
                          const uniqueAuthors = [...new Set(books.map(book => book.author.name))];
                          return uniqueAuthors.map(authorName => ({ name: authorName }));
                         },
-                          
-            getAuthorByBook: {
+            GetAuthorByBook: {
                             author: (parent) => parent.author,
                              },
-            bookfromtitle: {
+            GetBookDetailsFromTitle: {
                             book: (parent) => parent.title,
                            },
-                           GetBooksByAuthors: (parent, args) => {
+          GetBooksByAuthor: (parent, args) => {
                             return books.filter(({ author }) => author.name === args.name);
-                          },              
-           }
+                          },
+                        },                            
+                          /*   Mutation: {
+            addBook: async (_, { AddBookInput }) => {
+              const book = new book({ AddBookInput });
+              await book.save();
+              return book;
+            },
+            
+            addAuthor: async (_, { name }) => {
+              const author = new author({ name });
+              await author.save();
+              return author;
+              
+            } */
 
   };
 
