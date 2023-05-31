@@ -17,6 +17,13 @@ const resolvers =
 {
 
   // this specific resolver function Author required to have nested queries (authors->books->authors)
+  // its logic is as follows:
+  // For the type Author it defines how 'books' should be resolved => 
+  // (parent) is an Author, received as an input argument
+  // filter() goes thru array of books and filters those that satisfy condition
+  // book.author.name === parent.name
+
+
   Author: {
           books: (parent) =>
             {
@@ -24,12 +31,32 @@ const resolvers =
             }
           },
 
-// Greeting is a simple string
-// + 'allbooks' resolver function returns all books
-// + allauthors: books.map(book => book.author.name = maps over the books array and extracts the name property of the author object for each book. Creates an array of author names.
-// + getauthorbyBook: takes title of the book as an argument (maybe also from a select dropdown list?) and returns an author
-// - GetBookDetailsFromTitle: takes title, returns book details
-// + GetBooksByAuthor: takes name of an author as an argument and returns all books written by him
+// greeting returns a simple string
+
+// AllBooks resolver function returns full array of books
+
+// AllAuthors:
+// had to be created like this because its not a const
+// books.map(book => book.author.name) - goes thru the array of books and fetches book.author.name
+// ..new Set() then puts it into a new Set, achieving uniqueness of values
+// then uniqueAuthors.map(authorName => ({ name: authorName })) goes thru an array of author names
+// and stores each of them in a varible authorName
+// then map assigns array of authorNames to the uniqueAuthors.name array
+
+// GetAuthorByBook:
+// books.filter goes thru all books, checks when an argument equals book.title and stores them in a new array
+// then map((book) => book.author goes thru filtered array and extracts book.author property
+
+// GetBookDetailsFromTitle:
+// takes title as an argument and returns all other details
+// if we are sure that only one object will be returned, not an array, then we can change the method
+// filter() to method find() and change the return type from [Book] to Book in query definition in schema.graphql
+
+// GetBooksByAuthor
+// goes thru books and field authors 
+// checks when author.name === args.name and stores them in a new array
+// returns the array of books
+
 
   Query: {
             greeting: () => 'Greetings fellow learner',
@@ -39,17 +66,20 @@ const resolvers =
                          const uniqueAuthors = [...new Set(books.map(book => book.author.name))];
                          return uniqueAuthors.map(authorName => ({ name: authorName }));
                         },
-            GetAuthorByBook: (parent, args) => {
-                                               return books.
-                                               filter((book) => book.title === args.title)
-                                               .map((book) => book.author);
-                                               },
-            GetBookDetailsFromTitle: {
-                                     book: (parent) => parent.title,
-                                     },
-            GetBooksByAuthor: (parent, args) => {
-                                                return books.filter(({ author }) => author.name === args.name);
-                                                },
+            GetAuthorByBook:
+            (parent, args) =>
+                              {
+                               return books.filter(( book ) => book.title === args.title).map((book) => book.author);
+                              },
+            GetBookDetailsFromTitle:
+            (parent, args) =>
+                              {
+                              return books.filter(( book ) => book.title === args.title) || null;
+                              },
+            GetBooksByAuthor:
+            (parent, args) => {
+                              return books.filter(({ author }) => author.name === args.name);
+                              },
          },                            
                           /*   Mutation: {
             addBook: async (_, { AddBookInput }) => {
