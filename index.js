@@ -12,16 +12,24 @@ const typeDefs = loadSchemaSync ('./src/schema.graphql', { loaders: [new GraphQL
 
 // Resolvers define how to fetch the types defined in your schema (obj, args, context, info) => {}
 
-const resolvers = {
+const resolvers =
 
-//enum typedefs moved to schema.graphql
- 
-  
-// greeting is a simple string
-// Resolver function 'allbooks' returns all books
-// allauthors: books.map(book => book.author.name = maps over the books array and extracts the name property of the author object for each book. Creates an array of author names.
-// getauthorbyBook: takes title of the book as an argument (from a select list maybe) and returns an author
-// bookfromtitle: takes title, returns author
+{
+
+  // this specific resolver function Author required to have nested queries (authors->books->authors)
+  Author: {
+          books: (parent) =>
+            {
+          return books.filter((book) => book.author.name === parent.name);
+            }
+          },
+
+// Greeting is a simple string
+// + 'allbooks' resolver function returns all books
+// + allauthors: books.map(book => book.author.name = maps over the books array and extracts the name property of the author object for each book. Creates an array of author names.
+// + getauthorbyBook: takes title of the book as an argument (maybe also from a select dropdown list?) and returns an author
+// - GetBookDetailsFromTitle: takes title, returns book details
+// + GetBooksByAuthor: takes name of an author as an argument and returns all books written by him
 
   Query: {
             greeting: () => 'Greetings fellow learner',
@@ -31,18 +39,19 @@ const resolvers = {
                          const uniqueAuthors = [...new Set(books.map(book => book.author.name))];
                          return uniqueAuthors.map(authorName => ({ name: authorName }));
                         },
-            GetAuthorByBook: {
-                            author: (parent) => parent.author,
-                             },
+            GetAuthorByBook: (parent, args) => {
+                                               return books.
+                                               filter((book) => book.title === args.title)
+                                               .map((book) => book.author);
+                                               },
             GetBookDetailsFromTitle: {
-                            book: (parent) => parent.title,
-                           },
+                                     book: (parent) => parent.title,
+                                     },
             GetBooksByAuthor: (parent, args) => {
-                            return books.filter(({ author }) => author.name === args.name);
-                          },
-          }, 
-                                     
-       /*   Mutation: {
+                                                return books.filter(({ author }) => author.name === args.name);
+                                                },
+         },                            
+                          /*   Mutation: {
             addBook: async (_, { AddBookInput }) => {
               const book = new book({ AddBookInput });
               await book.save();
@@ -56,7 +65,7 @@ const resolvers = {
               
             } */
 
-  };
+};
 
   // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
