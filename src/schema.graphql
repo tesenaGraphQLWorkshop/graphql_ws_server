@@ -35,8 +35,7 @@ type Book {
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
-
-  # author ma vracet autora dle knihy ale? authors(title)??
+  # resolvers for those functions are at ./index.js
 
 
   type Query
@@ -45,7 +44,7 @@ type Book {
             AllBooks: [Book]
             AllAuthors: [Author]
             GetAuthorByBook(title:String): [Author]
-            GetBookDetailsFromTitle(title:String): Book
+            GetBookDetailsFromTitle(title:String): [Book]
             GetBooksByAuthor(name: String): [Book]
             }
 
@@ -57,7 +56,7 @@ type Book {
 #              binding: BookBinding_enum
 #              bookStatus: BookStatus_enum
 #            }
-#  type mutation
+#  type Mutation
 #            {
 #              addBook (Input: AddBookInput): Book!
 #              addAuthor (name: String!): Author!
