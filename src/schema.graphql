@@ -29,7 +29,7 @@ type Book {
 
   type Author {
     name: String!
-    books: [Book!]
+    books: [Book]
               }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -46,18 +46,27 @@ type Book {
             GetAuthorByBook(title:String): [Author]
             GetBookDetailsFromTitle(title:String): [Book]
             GetBooksByAuthor(name: String): [Book]
+            },
+
+
+    
+  
+  type Mutation
+            {
+              AddBook (input: AddBookInput): Book!
+              AddAuthor (input: AddAuthorInput): Author!
             }
 
-#  input AddBookInput
-#            {
-#              title: String!
-#              author: Author!
-#              year: Int
-#              binding: BookBinding_enum
-#              bookStatus: BookStatus_enum
-#            }
-#  type Mutation
-#            {
-#              addBook (Input: AddBookInput): Book!
-#              addAuthor (name: String!): Author!
-#            }
+  input AddBookInput
+            {
+              title: String!
+              author: AddAuthorInput
+              year: Int
+             binding: BookBinding_enum
+              bookStatus: BookStatus_enum
+            }
+
+  input AddAuthorInput
+          {
+          name: String !
+          }
