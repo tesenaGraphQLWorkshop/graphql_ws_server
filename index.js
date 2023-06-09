@@ -81,20 +81,17 @@ const resolvers =
                               return books.filter(({ author }) => author.name === args.name);
                               },
          },                            
-                          /*   Mutation: {
-            addBook: async (_, { AddBookInput }) => {
-              const book = new book({ AddBookInput });
-              await book.save();
-              return book;
-            },
-            
-            addAuthor: async (_, { name }) => {
-              const author = new author({ name });
-              await author.save();
-              return author;
-              
-            } */
-
+                          
+  Mutation :     { AddBook:  
+        (parent, args) => { 
+          const newBook=args.input;
+        const lastId = books[books.length-1].id;
+        console.log(lastId);
+        newBook.id = lastId+1;
+        books.push(newBook);
+        return newBook; 
+        }
+      }
 };
 
   // The ApolloServer constructor requires two parameters: your schema
@@ -103,7 +100,7 @@ const server = new ApolloServer (
       {
       typeDefs: typeDefs,
       resolvers,
-      //mutation,
+      //npm startMutation,
       introspection:true
       }
                                 );
