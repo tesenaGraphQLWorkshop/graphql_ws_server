@@ -1,47 +1,51 @@
 # GraphQL Server with books running on Apollo Server & Node.JS
 
-This project was bootstrapped with [Create Apollo Server](https://www.apollographql.com/docs/apollo-server/getting-started).
+Purpose of this project is to practice GraphQL API Testing at Tesena <https://www.tesena.com>
 
-Vanilla JS, no TypeScript (though it'd be preferable).
+This project was bootstrapped with [Create Apollo Server](https://www.apollographql.com/docs/apollo-server/getting-started). Vanilla JS, no TypeScript.
 
-<https://www.tesena.com>
-
-In the project directory, you can run:
-
-### `npm start`
-
-
-## Data files
+## Project Structure
+### Data Files
 
 ./src/data.js
 
-## GQL schema
+### GraphQL Schema
 
 ./src/schema.graphql
 
-## App itself
+### App itself
 
 index.js
 
-## Required dependencies
+### Required Dependencies
 
-npm
-related node modules (excluded from the repo, run "npm install" which will install all modules listed as dependencies in the package.json file)
+Node modules (will be installed from NPM as mentioned below)
 
 
 ## How-To
-
-1. Use some IDE, e.g. VS Code
-2. install git
-3. install nodejs (18.16.0 as of 31.05.2023)
-4. install npm (^9.6.7 as of 31.05.2023)
-5. gql imports ("npm install @apollo/server")
-
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import { loadSchemaSync } from '@graphql-tools/load'
-import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
-
+### 1. Install Git and clone repository
+1. download Git from https://git-scm.com/ and install it
+2. verify installation - open the commandline window (cmd) and execute `git -v`. It should display the version number.
+1. using cmd, navigate to some directory you want to place this project to and execute command `git clone https://github.com/tesenaGraphQLWorkshop/graphql_ws_server`
+### 1. Install NodeJS (incl. NPM)
+1. download NodeJS LTS version from https://nodejs.org/en and install it
+1. verify installation of NodeJS - execute `node -v`. It should display the version number.
+1. verify installation of NPM (should come with NodeJS automatically) - execute `npm -v`. It should display the version number.
+### 1. Install project dependencies from NPM
+1. using cmd, navigate to your project directory and execute: 
+`npm install`
+1. verify installed packages: `npm ls`. There should be following packages displayed (the versions might differ):
+    * @apollo/server@4.9.3
+    * @graphql-tools/graphql-file-loader@8.0.0
+    * @graphql-tools/load@8.0.0
+    * @graphql-tools/schema@10.0.0
+    * graphql@16.8.1
+    * mutation@0.0.1
+    * npm@9.6.7
+    * type-graphql@2.0.0-beta.2
+### 2. Start the server 
+1. in the project directory, execute `npm start`. You should get message "*Server ready at: http://localhost:4000/*". 
+1. Now you can open this URL in your browser and start playing with GraphQL :)
 
 ## To-Dos / Nice-to-Haves
 
